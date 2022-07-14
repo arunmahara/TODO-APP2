@@ -19,9 +19,21 @@ def index(request):
         alltask = Todo.objects.all()
         return render(request, 'todo/index.html', {'alltasks': alltask})
 
+
 def deleteTask(request, id):
     if request.method == 'POST':
         task = Todo.objects.get(pk=id)
         task.delete()
         return redirect('/')
+
+def updateTask(request, id):
+    # if request.method == 'POST':
+    #     task = Todo.objects.get(pk=id)
+    # else:
+    task = Todo.objects.get(pk=id)
+    
+
+    
+    return render(request, 'todo/update.html', {'tasks': task} )
+
     

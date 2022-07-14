@@ -53,7 +53,7 @@
                               </div>
                         </td>
                         <td>
-                          <button type="submit" class="btn btn-success ms-1 btn-sm">Finished</button>
+                            <a href="{% url 'update' task.id %}" class="btn btn-success btn-sm">Edit</a>
                           <form action="{% url 'delete' task.id %}" method="POST" class="d-inline">
                             {% csrf_token %}
                             <input type="submit" class="btn btn-danger btn-sm" value="Delete">
