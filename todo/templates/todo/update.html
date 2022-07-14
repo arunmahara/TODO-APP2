@@ -10,7 +10,7 @@
 </head>
 <body>
     <section class="vh-100" style="background-color: #eee;">
-        <div class="container py-5 h-100">
+        <div class="container py-5 h-50">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-lg-9 col-xl-7">
               <div class="card rounded-3">
@@ -18,11 +18,12 @@
       
                   <h4 class="text-center my-3 pb-3">Update Task</h4>
                  
-                  <form method='' class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
+                  <form method='POST' class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
+                    {% csrf_token%}
                     <div class="col-5">
                       <div class="form-outline">
                         
-                        <input type="text" name="task" id="form1" class="form-control-lg" value="{{tasks.task}}" />
+                        <input type="text" name="task" id="form1" class="form-control-lg" placeholder="Enter a task here" value="{{tasks.task}}" />
                         
                       </div>
                     </div>
@@ -34,6 +35,11 @@
       
                   </form>
                 </div>
+              </div>
+              <div>
+                {% for message in messages %}
+                <h6 class="text-center text-success "> {{message}} </h6>
+                {% endfor%}
               </div>
             </div>
           </div>
