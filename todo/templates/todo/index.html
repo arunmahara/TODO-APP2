@@ -9,15 +9,14 @@
     <title>TODO APP</title>
 </head>
 <body>
-    <section class="vh-100" style="background-color: #eee;">
+    <section class="vh-200" style="background-color: #eee;">
         <div class="container py-5 h-50">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-lg-9 col-xl-7">
               <div class="card rounded-3">
                 <div class="card-body p-2">
-      
-                  <h4 class="text-center my-3 pb-3">To Do App</h4>
-                 
+                  <h4 class="text-center my-3 pb-3">ToDo App</h4>
+                  
                   <form method='POST' class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
                     {% csrf_token%}
                     <div class="col-5">
@@ -25,17 +24,14 @@
                         <input type="text" name="task" id="form1" class="form-control-lg" placeholder="Enter a task here" />
                       </div>
                     </div>
-      
                     <div class="col-12">
-                      <button type="submit" class="btn btn-primary btn-lg">Save</button>
+                      <button type="submit" class="btn btn-success btn-lg">Add</button>
                     </div>
-      
                   </form>
       
-                  <table class="table mb-4">
+                  <table class="table mb-4 ">
                     <thead>
                       <tr>
-                        <th scope="col">No.</th>
                         <th scope="col">Todo item</th>
                         <th scope="col">Status</th>
                         <th scope="col">Actions</th>
@@ -44,21 +40,31 @@
                     <tbody>
                         {% for task in alltasks %}
                       <tr>
-                        <th scope="row">{{task.id}}</th>
-                        <td>{{task.task}}</td>
                         <td>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault"></label>
-                              </div>
+                          <!-- checks if the task is completed or not -->
+                          {% if task.status %} 
+                            <strike> {{task.task}}</strike>
+                          {% else %}
+                            {{task.task}}
+                          {% endif %}
                         </td>
                         <td>
-                            <a href="{% url 'update' task.id %}" class="btn btn-success btn-sm">Edit</a>
+                          <!-- checks if the task is completed or not -->
+                          {% if task.status %}
+                             <small style="color: green;">Completed</small>
+                          {%else%}
+                             <small style="color: red;">Pending</small>
+                          {% endif %}
+                        </td>
+                        <td>
+                          <!-- update button -->
+                          <a href="{% url 'update' task.id %}" class="btn btn-info btn-sm">Update</a>
+                          
+                          <!-- delete button -->
                           <form action="{% url 'delete' task.id %}" method="POST" class="d-inline">
                             {% csrf_token %}
                             <input type="submit" class="btn btn-danger btn-sm" value="Delete">
                           </form>
-                          
                         </td>
                       </tr>
                       {% endfor %}
@@ -76,8 +82,5 @@
           </div>
         </div>
       </section>
-    <script src="{% static 'js/jquery.js' %}"></script>
-    <script src="{% static 'js/popper.js' %}"></script>
-    <script src="{% static 'js/bootstrap.js' %}"></script>
 </body>
 </html>

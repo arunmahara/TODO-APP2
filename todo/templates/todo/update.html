@@ -22,9 +22,11 @@
                     {% csrf_token%}
                     <div class="col-5">
                       <div class="form-outline">
-                        
+
                         <input type="text" name="task" id="form1" class="form-control-lg" placeholder="Enter a task here" value="{{tasks.task}}" />
-                        
+
+                        <input type="checkbox" name="status" {% if tasks.status %} checked {% endif %}/><small>:Status </small>
+
                       </div>
                     </div>
       
@@ -32,7 +34,6 @@
                       <button type="submit" class="btn btn-primary btn-lg">Save</button>
                       <a href="/" class="btn btn-success btn-lg">Back</button></a>
                     </div>
-      
                   </form>
                 </div>
               </div>
