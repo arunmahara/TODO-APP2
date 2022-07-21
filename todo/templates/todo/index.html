@@ -32,6 +32,7 @@
                   <table class="table mb-4 ">
                     <thead>
                       <tr>
+                        <th>S.N</th>
                         <th scope="col">Todo item</th>
                         <th scope="col">Status</th>
                         <th scope="col">Actions</th>
@@ -40,6 +41,7 @@
                     <tbody>
                         {% for task in alltasks %}
                       <tr>
+                        <td>{{forloop.counter}}</td>
                         <td>
                           <!-- checks if the task is completed or not -->
                           {% if task.status %} 
