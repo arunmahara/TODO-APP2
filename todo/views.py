@@ -22,7 +22,10 @@ def index(request):
     
     else:
         alltask = Todo.objects.all().order_by('-date') #get all todo tasks according to date created created
-        return render(request, 'todo/index.html', {'alltasks': alltask})
+        remtask = Todo.objects.filter(status=False).count()
+        totaltask = alltask.count()
+        context = {'alltasks': alltask, 'remtask':remtask, 'totaltask':totaltask}
+        return render(request, 'todo/index.html', context)
 
 # function to delete todo task
 def deleteTask(request, id):

@@ -13,7 +13,7 @@
         <div class="container py-5 h-50">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-lg-9 col-xl-7">
-              <div class="card rounded-3">
+              <div class="card rounded-3 mb-1">
                 <div class="card-body p-2">
                   <h4 class="text-center my-3 pb-3">ToDo App</h4>
                   
@@ -75,6 +75,7 @@
       
                 </div>
               </div>
+              <small> You have <small class="text-danger h6">{{remtask}}</small> remaining tasks  out of <small class="text-success h6">{{totaltask}}.</small></small>
             </div>
             <div>
               {% for message in messages %}
